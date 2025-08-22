@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nexus Dynamics - Agencia líder en soluciones de Inteligencia Artificial. Transformamos empresas con IA personalizada, chatbots, automatización y análisis predictivo.">
+    <meta name="keywords" content="inteligencia artificial, IA, machine learning, chatbots, automatización, análisis predictivo">
+    <title>Nexus Dynamics - Transformamos tu negocio con IA</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Variables CSS personalizadas - Escala de Grises */
+        :root {
+            --primary-gray: #6b7280;
+            --secondary-gray: #4b5563;
+            --accent-light: #e5e7eb;
+            --dark-bg: #0a0a0a;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --gradient-primary: linear-gradient(135deg, var(--primary-gray), var(--secondary-gray));
+            --gradient-bg: linear-gradient(45deg, #1a1a1a, #0f0f0f, #1f1f1f);
+        }
+
+        /* Reset y configuración base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Fondo animado con partículas */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-bg);
+            z-index: -2;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-light);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Efectos glassmorphism */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header sticky con navegación */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.3px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(107, 114, 128, 0.4);
+        }
+
+        /* Menú hamburguesa para móvil */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Sección Hero */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            z-index: 10;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--text-light), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(229, 231, 235, 0.3));
+            }
+            to {
+                filter: drop-shadow(0 0 30px rgba(229, 231, 235, 0.6));
+            }
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--text-gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            border: 2px solid var(--glass-border);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--glass-bg);
+            border-color: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
+        /* Sección de servicios */
+        .services {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 600;
+            margin-bottom: 4rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            justify-items: center;
+        }
+
+        .service-card {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            max-width: 400px;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(107, 114, 128, 0.2);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(229, 231, 235, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem 0;
+            color: var(--text-light);
+            letter-spacing: -0.3px;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        /* Sección Sobre Nosotros */
+        .about {
+            padding: 100px 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about-text h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 3.5vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+
+        .about-text p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem 1rem;
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* Casos de éxito */
+        .portfolio {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            justify-items: center;
+        }
+
+        .portfolio-card {
+            padding: 2.5rem 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+            max-width: 400px;
+            width: 100%;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+        }
+
+        .portfolio-card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-metrics {
+            margin-top: auto;
+        }
+
+        .portfolio-metrics small {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Sección de contacto */
+        .contact {
+            padding: 100px 0;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.2rem 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-light);
+            box-shadow: 0 0 20px rgba(229, 231, 235, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: var(--glass-bg);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--accent-light);
+            width: 30px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent-light);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section a {
+            color: var(--text-gray);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-light);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--glass-bg);
+            border-radius: 50%;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gradient-primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-gray);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: var(--glass-bg);
+            padding: 1.5rem;
+            cursor: pointer;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        /* Responsive Design - Mejoras */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .about-content,
+            .contact-content {
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                padding-top: 2rem;
+                gap: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-content {
+                padding: 1.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .services-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Responsive ajustes para botones flotantes */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            nav {
+                padding: 0 1rem;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .services,
+            .about,
+            .portfolio,
+            .contact,
+            .faq {
+                padding: 60px 0;
+            }
+
+            .service-card,
+            .portfolio-card {
+                padding: 2rem 1.5rem;
+                height: auto;
+                min-height: auto;
+            }
+
+            .cta-button,
+            .btn-secondary {
+                padding: 1rem 1.5rem;
+                font-size: 0.95rem;
+                width: 100%;
+                max-width: 280px;
+            }
+
+            /* Ajustar posición de botones flotantes en móvil */
+            .whatsapp-float {
+                bottom: 90px;
+                right: 15px;
+                width: 55px;
+                height: 55px;
+                font-size: 1.6rem;
+            }
+
+            .chat-widget {
+                bottom: 20px;
+                right: 15px;
+                width: 55px;
+                height: 55px;
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Animaciones adicionales */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        /* Botón WhatsApp flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Chat widget simulado */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(107, 114, 128, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-widget:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(107, 114, 128, 0.5);
+        }
+
+        /* Efectos de hover para mejorar UX */
+        .cta-button,
+        .btn-secondary,
+        .service-card,
+        .portfolio-card,
+        .contact-item {
+            cursor: pointer;
+        }
+
+        /* Scrollbar personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- Fondo animado -->
+    <div class="animated-bg"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Header con navegación sticky -->
+    <header id="header">
+        <nav>
+            <div class="logo">NEXUS DYNAMICS</div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="#contacto" class="cta-button">Consulta Gratis</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sección Hero -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Transformamos tu negocio con Inteligencia Artificial</h1>
+            <p>Soluciones IA personalizadas que impulsan el crecimiento y la eficiencia empresarial. Conectamos empresas con el futuro a través de tecnología de vanguardia.</p>
+            <div class="hero-buttons">
+                <a href="#contacto" class="cta-button">Comenzar Ahora</a>
+                <a href="#servicios" class="btn-secondary">Ver Servicios</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Servicios -->
+    <section class="services" id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card glass">
+                    <i class="fas fa-brain service-icon"></i>
+                    <h3>Consultoría en IA & ML</h3>
+                    <p>Estrategias personalizadas de inteligencia artificial y machine learning para optimizar tus procesos empresariales y generar ventajas competitivas.</p>
+                </div>
+                <div class="service-card glass">
+                    <i class="fas fa-robot service-icon"></i>
+                    <h3>Chatbots Inteligentes</h3>
+                    <p>Desarrollo de asistentes virtuales avanzados que mejoran la experiencia del cliente y automatizan el soporte 24/7.</p>
+                </div>
+                <div class="service-card glass">
+                    <i class="fas fa-cogs service-icon"></i>
+                    <h3>Automatización de Procesos</h3>
+                    <p>Transformación digital mediante la automatización inteligente de procesos empresariales, reduciendo costos y errores.</p>
+                </div>
+                <div class="service-card glass">
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3>Análisis Predictivo</h3>
+                    <p>Modelos de predicción basados en big data para anticipar tendencias, comportamientos y oportunidades de mercado.</p>
+                </div>
+                <div class="service-card glass">
+                    <i class="fas fa-eye service-icon"></i>
+                    <h3>Reconocimiento Visual</h3>
+                    <p>Sistemas de visión artificial para automatizar inspecciones, control de calidad y análisis de imágenes en tiempo real.</p>
+                </div>
+                <div class="service-card glass">
+                    <i class="fas fa-shopping-cart service-icon"></i>
+                    <h3>IA para E-commerce</h3>
+                    <p>Soluciones especializadas para comercio electrónico: recomendaciones personalizadas, optimización de precios y análisis de comportamiento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Sobre Nosotros -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Expertos en Transformación Digital</h2>
+                    <p>En Nexus Dynamics, somos pioneros en la implementación de soluciones de inteligencia artificial que transforman la manera en que las empresas operan y compiten en el mercado digital.</p>
+                    <p>Nuestro equipo de especialistas cuenta con años de experiencia en machine learning, ciencia de datos y desarrollo de sistemas inteligentes, trabajando con empresas de todos los tamaños para lograr resultados excepcionales.</p>
+                    <p>Nos enfocamos en ofrecer implementación rápida, ROI comprobado en 90 días, soporte técnico 24/7 y escalabilidad garantizada para asegurar el éxito de cada proyecto.</p>
+                </div>
+                <div class="about-stats glass">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Proyectos Completados</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">Tasa de Éxito</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Soporte Técnico</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">90</span>
+                            <span class="stat-label">Días ROI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Portfolio -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Casos de Éxito</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-card glass">
+                    <h4>Automatización Bancaria</h4>
+                    <p>Implementación de chatbot inteligente que redujo en 70% las consultas al call center, mejorando la satisfacción del cliente y optimizando recursos.</p>
+                    <div class="portfolio-metrics">
+                        <small><i class="fas fa-chart-bar"></i> 70% reducción consultas | 95% satisfacción cliente</small>
+                    </div>
+                </div>
+                <div class="portfolio-card glass">
+                    <h4>Predicción de Demanda Retail</h4>
+                    <p>Sistema de análisis predictivo que optimizó la gestión de inventario, reduciendo desperdicios en 40% y aumentando ventas en 25%.</p>
+                    <div class="portfolio-metrics">
+                        <small><i class="fas fa-chart-line"></i> 40% menos desperdicio | 25% más ventas</small>
+                    </div>
+                </div>
+                <div class="portfolio-card glass">
+                    <h4>Control de Calidad Industrial</h4>
+                    <p>Implementación de visión artificial para inspección automatizada, alcanzando 99.9% de precisión en detección de defectos.</p>
+                    <div class="portfolio-metrics">
+                        <small><i class="fas fa-eye"></i> 99.9% precisión | Inspección 24/7</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question glass" onclick="toggleFAQ(this)">
+                        <span>¿Cuánto tiempo toma implementar una solución de IA?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El tiempo de implementación varía según la complejidad del proyecto. Proyectos básicos pueden completarse en 4-6 semanas, mientras que soluciones más avanzadas pueden tomar 3-6 meses. Garantizamos resultados visibles en los primeros 90 días.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question glass" onclick="toggleFAQ(this)">
+                        <span>¿Qué tipo de soporte ofrecen post-implementación?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ofrecemos soporte técnico 24/7, actualizaciones periódicas, monitoreo continuo del rendimiento y capacitación para tu equipo. Incluimos garantía completa y mantenimiento proactivo de todos nuestros sistemas.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question glass" onclick="toggleFAQ(this)">
+                        <span>¿Cómo garantizan el ROI en 90 días?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Establecemos métricas claras de rendimiento desde el inicio, implementamos soluciones con impacto inmediato en eficiencia y costos, y realizamos seguimiento continuo para ajustar y optimizar los resultados según tus objetivos específicos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Comencemos tu Transformación Digital</h2>
+            <div class="contact-content">
+                <div class="contact-form glass">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Corporativo</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa">Empresa</label>
+                            <input type="text" id="empresa" name="empresa" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono">
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio">Servicio de Interés</label>
+                            <select id="servicio" name="servicio" required>
+                                <option value="">Seleccionar servicio</option>
+                                <option value="consultoria">Consultoría en IA & ML</option>
+                                <option value="chatbots">Chatbots Inteligentes</option>
+                                <option value="automatizacion">Automatización de Procesos</option>
+                                <option value="predictivo">Análisis Predictivo</option>
+                                <option value="vision">Reconocimiento Visual</option>
+                                <option value="ecommerce">IA para E-commerce</option>
+                            </select>
+                        </div>IA para E-commerce</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu proyecto y cómo podemos ayudarte..."></textarea>
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">Solicitar Consulta Gratuita</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3 style="color: var(--accent-light); margin-bottom: 2rem;">Información de Contacto</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Oficina Principal</strong><br>
+                            Justiniano Posse, Córdoba<br>
+                            Argentina
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Teléfono</strong><br>
+                            +54 3537 331523<br>
+                            Lun-Vie: 9:00 - 18:00hs
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong><br>
+                            soporte@nexusdynamics.com<br>
+                            Consultas y soporte técnico
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Respuesta Garantizada</strong><br>
+                            Menos de 2 horas laborables<br>
+                            Soporte 24/7 para clientes
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Nexus Dynamics</h4>
+                    <p style="color: var(--text-gray); margin-bottom: 1rem;">Transformamos empresas con soluciones de inteligencia artificial de vanguardia. Tu socio estratégico en la era digital.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Servicios</h4>
+                    <a href="#servicios">Consultoría en IA & ML</a>
+                    <a href="#servicios">Chatbots Inteligentes</a>
+                    <a href="#servicios">Automatización de Procesos</a>
+                    <a href="#servicios">Análisis Predictivo</a>
+                    <a href="#servicios">Reconocimiento Visual</a>
+                    <a href="#servicios">IA para E-commerce</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <a href="#nosotros">Sobre Nosotros</a>
+                    <a href="#portfolio">Casos de Éxito</a>
+                    <a href="#contacto">Contacto</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Carreras</a>
+                    <a href="#">Prensa</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <a href="#">Centro de Ayuda</a>
+                    <a href="#">Documentación</a>
+                    <a href="#">Whitepapers</a>
+                    <a href="#">Webinars</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos de Servicio</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nexus Dynamics. Todos los derechos reservados. | Transformando el futuro con IA</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón WhatsApp Flotante -->
+    <div class="whatsapp-float" onclick="openWhatsApp()">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+
+    <!-- Chat Widget Simulado -->
+    <div class="chat-widget" onclick="openChat()">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Scripts JavaScript -->
+    <script>
+        // Configuración y variables globales
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeParticles();
+            initializeNavigation();
+            initializeScrollEffects();
+            initializeFormValidation();
+            initializeAnimations();
+        });
+
+        // Generación de partículas animadas
+        function initializeParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = window.innerWidth > 768 ? 50 : 25;
+            
+            for (let i = 0; i < particleCount; i++) {
+                createParticle(particlesContainer);
+            }
+        }
+
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            container.appendChild(particle);
+        }
+
+        // Navegación y menú hamburguesa
+        function initializeNavigation() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            const header = document.getElementById('header');
+
+            // Toggle menú móvil
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // Cerrar menú al hacer click en un enlace
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+
+            // Header sticky con efecto scroll
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scrolling para navegación
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const offsetTop = target.offsetTop - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Efectos de scroll y animaciones
+        function initializeScrollEffects() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                        
+                        // Animación de contadores
+                        if (entry.target.classList.contains('stat-number')) {
+                            animateCounter(entry.target);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observar elementos para animaciones
+            document.querySelectorAll('.service-card, .portfolio-card, .stat-item, .about-text, .contact-form').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Animación de contadores
+        function animateCounter(element) {
+            const target = parseInt(element.textContent.replace(/\D/g, ''));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = element.textContent.replace(/\d+/, target);
+                    clearInterval(timer);
+                } else {
+                    element.textContent = element.textContent.replace(/\d+/, Math.floor(current));
+                }
+            }, 16);
+        }
+
+        // Validación del formulario de contacto
+        function initializeFormValidation() {
+            const form = document.getElementById('contactForm');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validación básica
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                
+                if (!data.nombre || !data.email || !data.empresa) {
+                    showNotification('Por favor, completa todos los campos requeridos.', 'error');
+                    return;
+                }
+
+                if (!isValidEmail(data.email)) {
+                    showNotification('Por favor, introduce un email válido.', 'error');
+                    return;
+                }
+
+                // Simulación de envío exitoso
+                showNotification('¡Mensaje enviado exitosamente! Te contactaremos en menos de 2 horas.', 'success');
+                form.reset();
+            });
+        }
+
+        // Validador de email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Sistema de notificaciones
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 2rem;
+                background: ${type === 'success' ? 'var(--gradient-primary)' : '#ff4444'};
+                color: white;
+                border-radius: 10px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: slideInRight 0.3s ease;
+                max-width: 300px;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 5000);
+        }
+
+        // FAQ toggle functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            answer.classList.toggle('active');
+            icon.style.transform = answer.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        // Chat widget simulado
+        function openChat() {
+            showNotification('¡Hola! Nuestro equipo te contactará muy pronto. Mientras tanto, puedes escribirnos a soporte@nexusdynamics.com', 'success');
+        }
+
+        // WhatsApp widget
+        function openWhatsApp() {
+            const phoneNumber = '5493537331523'; // Número con código de país Argentina
+            const message = encodeURIComponent('¡Hola Nexus Dynamics! Me interesa conocer más sobre sus soluciones de IA. ¿Podrían brindarme información?');
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+            
+            // Abrir WhatsApp en nueva pestaña
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Animaciones adicionales e interacciones
+        function initializeAnimations() {
+            // Efecto parallax sutil en hero
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    hero.style.transform = `translateY(${scrolled * 0.1}px)`;
+                }
+            });
+
+            // Efectos hover mejorados para tarjetas de servicios
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Cursor personalizado para elementos interactivos
+            document.querySelectorAll('.cta-button, .btn-secondary, .service-card, .portfolio-card').forEach(el => {
+                el.addEventListener('mouseenter', function() {
+                    document.body.style.cursor = 'pointer';
+                });
+                
+                el.addEventListener('mouseleave', function() {
+                    document.body.style.cursor = 'default';
+                });
+            });
+        }
+
+        // Optimización de rendimiento
+        let ticking = false;
+        
+        function updateScrollEffects() {
+            // Aquí iría lógica adicional de scroll si es necesaria
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollEffects);
+                ticking = true;
+            }
+        });
+
+        // Responsive adjustments
+        window.addEventListener('resize', function() {
+            // Reajustar partículas en resize
+            const particlesContainer = document.getElementById('particles');
+            if (particlesContainer) {
+                particlesContainer.innerHTML = '';
+                initializeParticles();
+            }
+        });
+
+        // Preloader (opcional)
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Mejoras de accesibilidad
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // Cerrar menú móvil con ESC
+                const navMenu = document.getElementById('nav-menu');
+                const hamburger = document.getElementById('hamburger');
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            }
+        });
+
+        // Analytics simulado (placeholder para implementación real)
+        function trackEvent(action, category, label) {
+            console.log(`Event tracked: ${action} - ${category} - ${label}`);
+            // Aquí se integraría con Google Analytics u otra herramienta
+        }
+
+        // Track clicks en botones CTA
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                trackEvent('click', 'CTA', this.textContent);
+            });
+        });
+    </script>
+
+    <!-- CSS adicional para animaciones -->
+    <style>
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Estados adicionales para hamburger menu */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Mejoras de rendimiento */
+        .particle {
+            will-change: transform;
+        }
+
+        .service-card, .portfolio-card {
+            will-change: transform;
+        }
+
+        /* Estados de carga */
+        body:not(.loaded) .hero-content {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        body.loaded .hero-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s ease;
+        }
+    </style>
+</body>
+</html>
